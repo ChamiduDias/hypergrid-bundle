@@ -1,108 +1,233 @@
 <!DOCTYPE html>
 <html>
-<meta name="universal-app/config/environment"
-  content="%7B%22modulePrefix%22%3A%22universal-app%22%2C%22environment%22%3A%22development%22%2C%22rootURL%22%3A%22/%22%2C%22locationType%22%3A%22auto%22%2C%22EmberENV%22%3A%7B%22FEATURES%22%3A%7B%7D%7D%2C%22moment%22%3A%7B%22includeLocales%22%3A%5B%22en%22%2C%22ar%22%2C%22fr%22%5D%7D%2C%22contentSecurityPolicy%22%3A%7B%22default-src%22%3A%22%27none%27%22%2C%22script-src%22%3A%22%27self%27%20%27unsafe-inline%27%20%27unsafe-eval%27%20www.google-analytics.com%22%2C%22font-src%22%3A%22%27self%27%20data%3A%20use.typekit.net%20fonts.gstatic.com%22%2C%22img-src%22%3A%22%27self%27%20data%3A%20image/png%20www.google-analytics.com%22%2C%22connect-src%22%3A%22%27self%27%20www.google-analytics.com%20wss%3A//data-sa9.mubasher.net/html5ws%22%2C%22style-src%22%3A%22%27self%27%20%27unsafe-inline%27%20http%3A//fonts.googleapis.com%22%2C%22frame-src%22%3A%22%27self%27%20http%3A//dfnnet.directfn.com/ESTORERIA/Agreement/en/EULA.htm%22%7D%2C%22APP%22%3A%7B%22isTestMode%22%3Atrue%2C%22priceConnectionParameters%22%3A%7B%22primary%22%3A%7B%22ip%22%3A%22data-sa9.mubasher.net/html5ws%22%2C%22port%22%3A%22%22%2C%22secure%22%3Atrue%7D%7D%2C%22name%22%3A%22universal-app%22%2C%22version%22%3A%220.0.0+a2eca9f5%22%7D%2C%22exportApplicationGlobal%22%3Atrue%7D" />
+    <meta
+        name="universal-app/config/environment"
+        content="%7B%22modulePrefix%22%3A%22universal-app%22%2C%22environment%22%3A%22development%22%2C%22rootURL%22%3A%22/%22%2C%22locationType%22%3A%22auto%22%2C%22EmberENV%22%3A%7B%22FEATURES%22%3A%7B%7D%7D%2C%22moment%22%3A%7B%22includeLocales%22%3A%5B%22en%22%2C%22ar%22%2C%22fr%22%5D%7D%2C%22contentSecurityPolicy%22%3A%7B%22default-src%22%3A%22%27none%27%22%2C%22script-src%22%3A%22%27self%27%20%27unsafe-inline%27%20%27unsafe-eval%27%20www.google-analytics.com%22%2C%22font-src%22%3A%22%27self%27%20data%3A%20use.typekit.net%20fonts.gstatic.com%22%2C%22img-src%22%3A%22%27self%27%20data%3A%20image/png%20www.google-analytics.com%22%2C%22connect-src%22%3A%22%27self%27%20www.google-analytics.com%20wss%3A//data-sa9.mubasher.net/html5ws%22%2C%22style-src%22%3A%22%27self%27%20%27unsafe-inline%27%20http%3A//fonts.googleapis.com%22%2C%22frame-src%22%3A%22%27self%27%20http%3A//dfnnet.directfn.com/ESTORERIA/Agreement/en/EULA.htm%22%7D%2C%22APP%22%3A%7B%22isTestMode%22%3Atrue%2C%22priceConnectionParameters%22%3A%7B%22primary%22%3A%7B%22ip%22%3A%22data-sa9.mubasher.net/html5ws%22%2C%22port%22%3A%22%22%2C%22secure%22%3Atrue%7D%7D%2C%22name%22%3A%22universal-app%22%2C%22version%22%3A%220.0.0+a2eca9f5%22%7D%2C%22exportApplicationGlobal%22%3Atrue%7D"
+    />
 
-<body>
-  <script src="./hypergrid-bundle.js"></script>
+    <body>
+        <script src="./hypergrid-bundle.js"></script>
 
-  <div id="dd2" class="hypergrid-canvas"></div>
+        <div id="dd2" class="hypergrid-canvas"></div>
 
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: sans-serif;
-      width: 100%;
-      background-color: rgb(39, 39, 39);
-      height: 100%;
-    }
+        <style>
+            body {
+                margin: 0;
+                padding: 0;
+                font-family: sans-serif;
+                width: 100%;
+                background-color: rgb(39, 39, 39);
+                height: 100%;
+            }
 
-    .table-wrapper-height {
-      height: 100%;
-      width: 100%;
-      overflow: auto;
-      background-color: red;
-    }
+            .table-wrapper-height {
+                height: 100%;
+                width: 100%;
+                overflow: auto;
+                background-color: red;
+            }
 
-    #dd2>div:nth-child(1),
-    #div>div:nth-child(1) {
-      height: 100%;
-      width: 100%;
-    }
+            #dd2 > div:nth-child(1),
+            #div > div:nth-child(1) {
+                height: 100%;
+                width: 100%;
+            }
 
-    h1 {
-      color: white;
-      text-align: center;
-    }
+            h1 {
+                color: white;
+                text-align: center;
+            }
 
-    .hypergrid-canvas {
-      height: 1900px;
-      width: 1100px;
-      background-color: '#18191b';
-    }
-    </style>
+            .hypergrid-canvas {
+                height: 1900px;
+                width: 1100px;
+                background-color: '#18191b';
+            }
+        </style>
 
-  <script type="module">
+        <script type="module">
+            let rowUpdatedTimestamp = 0;
 
-    window.onload = event => {
+            const updateTableRows = (dataValue, dataTable) => {
+                // Keep last repaint time
+                let timeStamp = performance.now();
 
-      const nativeData = JSON.parse(window.ReactNativeWebView.injectedObjectJson());
+                if (dataValue && dataTable) {
+                    let currentRow;
 
-      let dataTable;
-      let container = document.getElementById('dd2');
-      let { schemaValue } = nativeData;
+                    // Loop paint loop on all visible rows
+                    Object.keys(dataTable.renderer.visibleRowsByDataRowIndex).forEach(function (
+                        key,
+                    ) {
+                        let value = dataTable.renderer.visibleRowsByDataRowIndex[key];
+                        currentRow = dataTable.getRow(key);
 
-      document.addEventListener('message', event => {
-        const messageData = JSON.parse(event.data);
-        dataTable.setData({ data: messageData, schema: schemaValue });
-      });
+                        if (currentRow) {
+                            if (currentRow.lut) {
+                                // Check with last repaint time and last row update time from defined business entity
+                                if (rowUpdatedTimestamp < currentRow.lut) {
+                                    // Paint selected row when last update time is greater than row update time
+                                    _paintRow(value.index, dataTable);
+                                }
+                            } else {
+                                // If business entity not return lut(Last Updated Time) repaint table according to timer.
+                                _paintRow(value.index, dataTable);
+                            }
+                        }
+                    });
 
+                    // Update row updated timer after repaint rows
+                    rowUpdatedTimestamp = timeStamp;
+                }
+            };
 
-      dataTable = new Hypergrid.Hypergrid(container);
+            const _paintRow = (rowIndex, dataTable) => {
+                if (rowIndex) {
+                    let viewHeight = dataTable.renderer.visibleRows.length
+                        ? dataTable.renderer.visibleRows[dataTable.renderer.visibleRows.length - 1]
+                              .bottom
+                        : 0;
+                    let gc = dataTable.canvas.gc;
+                    let selectedElement = undefined;
+                    let vc = undefined;
 
-      //dataTable.setData({   });
+                    let filteredCellEvents = [];
 
-      dataTable.cellRenderers.add('@ui-components/tables/PlusMinusTableColumn', Hypergrid.custom.plusMinusTableColumn);
-      dataTable.cellRenderers.add('@ui-components/tables/SimpleTableColumn', Hypergrid.custom.simpleTableColumn);
+                    // Filter all cell events according to row index
+                    for (
+                        let x = rowIndex;
+                        x < dataTable.renderer.cellEventPool.length;
+                        x += dataTable.renderer.visibleRows.length
+                    ) {
+                        filteredCellEvents.push(dataTable.renderer.cellEventPool[x]);
+                    }
 
-      dataTable.properties.rowHeaderNumbers = false;
-      dataTable.properties.rowHeaderCheckboxes = false;
-      dataTable.properties.cellBorderThickness = 0;
-      dataTable.properties.hoverRowHighlight = false;
-      dataTable.properties.defaultRowHeight = 100;
-      dataTable.properties.gridLinesH = false;
-      dataTable.properties.gridLinesV = false;
-      dataTable.properties.cellPadding = 0;
-      dataTable.properties.cellSelection = true;
-      dataTable.properties.autoSelectRows = true;
-      dataTable.properties.columnSelection = true;
-      dataTable.properties.hoverColumnHighlight = { enabled: true };
-      dataTable.properties.rowSelection = true;
-      dataTable.properties.font = '42px verdana';
-      dataTable.properties.columnHeaderFont = '42px Roboto, Helvetica, Arial, sans-serif';
-      dataTable.properties.columnHeaderColor = 'white'
-      dataTable.properties.columnHeaderBackgroundColor = '';
-      dataTable.properties.singleRowSelectionMode = false;
-      dataTable.properties.columnAutosizing = false;
-      dataTable.properties.showRowNumbers = false;
-      dataTable.properties.selectionRegionOutlineColor = '';
-      dataTable.properties.columnHeaderBackgroundSelectionColor = '#959697';
-      dataTable.properties.backgroundColor2 = '';
-      dataTable.properties.hoverCellHighlight = { enabled: false };
-      dataTable.properties.fixedLinesHWidth = 0;
-      dataTable.properties.fixedLinesVColor = '';
-      dataTable.properties.isArabic = false;
-      dataTable.properties.setScrollingNow = false;
+                    dataTable.renderer.visibleColumns.forEach(function (column, index) {
+                        // Filter cells by visible columns
+                        selectedElement = filteredCellEvents.filter(
+                            (cellEvent) => cellEvent.gridCell.x === column.columnIndex,
+                        )[0];
 
-      // dataTable.behavior.dataModel.getCell = function (config, cellRenderer) {
-      //   return dataTable.cellRenderers.get(cellRenderer);
-      // };
+                        if (selectedElement) {
+                            vc = selectedElement.visibleColumn;
 
-   
-    };
-  </script>
+                            // paint selected cells
+                            _paintGridCell(gc, vc, viewHeight, selectedElement, index, dataTable);
+                        }
+                    });
+                }
+            };
 
-</body>
+            const _paintGridCell = (gc, vc, viewHeight, selectedElement, index, dataTable) => {
+                let columnClip = vc.column.properties.columnClip;
+                let preferredWidth;
+                let C = dataTable.renderer.visibleColumns.length;
+                let cLast = C - 1;
 
+                _configCellBorder(selectedElement, dataTable);
+
+                try {
+                    gc.clipSave(
+                        columnClip || (columnClip === null && index === cLast),
+                        0,
+                        0,
+                        vc.right,
+                        viewHeight,
+                    );
+                    preferredWidth = Math.max(
+                        index,
+                        dataTable.renderer._paintCell(gc, selectedElement),
+                    );
+                    selectedElement.column.properties.preferredWidth = Math.round(preferredWidth);
+
+                    gc.clipRestore(columnClip);
+                } catch (e) {
+                    // Call default resize function when unable to proceed _paintCell
+                    dataTable.canvas.resize(); // [TODO] Chamath: Check whether it is needed to repaint table when resize window
+                    console.log('Error in table painting : ', e);
+                }
+            };
+
+            const _configCellBorder = (cellEvent, dataTable) => {
+                // Draw border cell
+                if (
+                    cellEvent &&
+                    (cellEvent.isDataRow || cellEvent.isSummaryRow)
+                    // this.getBorderConfig().displayBorders
+                ) {
+                    // Add cell wise border thickness
+                    dataTable.properties.cellBorderThickness = 1;
+                    // Set border color in cells
+                    // dataTable.properties.cellBorderStyle = this.getBorderConfig().borderColor;
+                } else {
+                    dataTable.properties.cellBorderThickness = 0;
+                }
+            };
+
+            window.onload = (event) => {
+                const nativeData = JSON.parse(window.ReactNativeWebView.injectedObjectJson());
+
+                let dataTable;
+                let container = document.getElementById('dd2');
+                let { schemaValue, dataValue } = nativeData;
+
+                document.addEventListener('message', (event) => {
+                    const messageData = JSON.parse(event.data);
+                    dataTable.setData({ data: messageData, schema: schemaValue });
+                });
+
+                dataTable = new Hypergrid.Hypergrid(container);
+
+                //dataTable.setData({   });
+
+                dataTable.cellRenderers.add(
+                    '@ui-components/tables/PlusMinusTableColumn',
+                    Hypergrid.custom.plusMinusTableColumn,
+                );
+                dataTable.cellRenderers.add(
+                    '@ui-components/tables/SimpleTableColumn',
+                    Hypergrid.custom.simpleTableColumn,
+                );
+
+                dataTable.properties.rowHeaderNumbers = false;
+                dataTable.properties.rowHeaderCheckboxes = false;
+                dataTable.properties.cellBorderThickness = 0;
+                dataTable.properties.hoverRowHighlight = false;
+                dataTable.properties.defaultRowHeight = 100;
+                dataTable.properties.gridLinesH = false;
+                dataTable.properties.gridLinesV = false;
+                dataTable.properties.cellPadding = 0;
+                dataTable.properties.cellSelection = true;
+                dataTable.properties.autoSelectRows = true;
+                dataTable.properties.columnSelection = true;
+                dataTable.properties.hoverColumnHighlight = { enabled: true };
+                dataTable.properties.rowSelection = true;
+                dataTable.properties.font = '42px verdana';
+                dataTable.properties.columnHeaderFont = '42px Roboto, Helvetica, Arial, sans-serif';
+                dataTable.properties.columnHeaderColor = 'white';
+                dataTable.properties.columnHeaderBackgroundColor = '';
+                dataTable.properties.singleRowSelectionMode = false;
+                dataTable.properties.columnAutosizing = false;
+                dataTable.properties.showRowNumbers = false;
+                dataTable.properties.selectionRegionOutlineColor = '';
+                dataTable.properties.columnHeaderBackgroundSelectionColor = '#959697';
+                dataTable.properties.backgroundColor2 = '';
+                dataTable.properties.hoverCellHighlight = { enabled: false };
+                dataTable.properties.fixedLinesHWidth = 0;
+                dataTable.properties.fixedLinesVColor = '';
+                dataTable.properties.isArabic = false;
+                dataTable.properties.setScrollingNow = false;
+
+                if (dataTable) {
+                    let repaintTimer = setInterval(function () {
+                        updateTableRows(dataValue, dataTable);
+                    }, 300);
+                }
+
+                // dataTable.behavior.dataModel.getCell = function (config, cellRenderer) {
+                //   return dataTable.cellRenderers.get(cellRenderer);
+                // };
+            };
+        </script>
+    </body>
 </html>
