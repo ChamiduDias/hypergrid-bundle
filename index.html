@@ -213,10 +213,12 @@
                 dataTable.properties.columnHeaderBackgroundSelectionColor = '#959697';
                 dataTable.properties.backgroundColor2 = '';
                 dataTable.properties.hoverCellHighlight = { enabled: false };
-                dataTable.properties.fixedLinesHWidth = 0;
-                dataTable.properties.fixedLinesVColor = '';
+                dataTable.properties.fixedLinesHWidth = 1;
+                dataTable.properties.fixedLinesVColor = '#ffffff';
+                dataTable.properties.fixedColumnCount = 1;
+                dataTable.properties.scrollingEnabled = true;
+                dataTable.properties.fixedLinesVWidth = 1;
                 dataTable.properties.isArabic = false;
-                dataTable.properties.setScrollingNow = true;
 
                 if (dataTable) {
                     let repaintTimer = setInterval(function () {
