@@ -153,20 +153,20 @@
             };
 
             window.onload = (event) => {
-                const nativeData = window.ReactNativeWebView.injectedObjectJson();
+                const nativeData = JSON.parse(window.ReactNativeWebView.injectedObjectJson());
 
                 let dataTable;
                 let container = document.getElementById('dd2');
                 let { schemaValue, dataValue } = nativeData;
 
-                document.addEventListener('message', (event) => {
-                    const messageData = event.data;
-                    dataTable.setData({ data: messageData, schema: schemaValue });
-                });
+                // document.addEventListener('message', (event) => {
+                //     const messageData = JSON.parse(event.data);
+                //     dataTable.setData({ data: messageData, schema: schemaValue });
+                // });
 
                 dataTable = new Hypergrid.Hypergrid(container);
 
-                //dataTable.setData({   });
+                dataTable.setData({ data: dataValue, schema: schemaValue });
 
                 dataTable.cellRenderers.add(
                     '@ui-components/tables/PlusMinusTableColumn',
