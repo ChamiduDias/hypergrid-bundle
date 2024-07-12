@@ -160,7 +160,7 @@
                 let { schemaValue, dataValue } = nativeData;
 
                 document.addEventListener('message', (event) => {
-                    const messageData = JSON.parse(event.data);
+                    const messageData = event.data;
                     dataTable.setData({ data: messageData, schema: schemaValue });
                 });
 
