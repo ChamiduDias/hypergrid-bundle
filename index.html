@@ -157,16 +157,17 @@
 
                 let dataTable;
                 let container = document.getElementById('dd2');
-                let { schemaValue, dataValue } = nativeData;
+                let { schemaValue } = nativeData;
+                let messageData;
 
-                // document.addEventListener('message', (event) => {
-                //     const messageData = JSON.parse(event.data);
-                //     dataTable.setData({ data: messageData, schema: schemaValue });
-                // });
+                document.addEventListener('message', (event) => {
+                    messageData = JSON.parse(event.data);
+                    dataTable.setData({ data: messageData, schema: schemaValue });
+                });
 
                 dataTable = new Hypergrid.Hypergrid(container);
 
-                dataTable.setData({ data: dataValue, schema: schemaValue });
+                // dataTable.setData({ data: dataValue, schema: schemaValue });
 
                 dataTable.cellRenderers.add(
                     '@ui-components/tables/PlusMinusTableColumn',
