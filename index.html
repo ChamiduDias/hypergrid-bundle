@@ -153,7 +153,7 @@
             };
 
             window.onload = (event) => {
-                const nativeData = window.ReactNativeWebView.injectedObjectJson();
+                const nativeData = JSON.parse(window.ReactNativeWebView.injectedObjectJson());
 
                 let dataTable;
                 let container = document.getElementById('dd2');
@@ -166,8 +166,6 @@
                 });
 
                 dataTable = new Hypergrid.Hypergrid(container);
-
-                // dataTable.setData({ data: dataValue, schema: schemaValue });
 
                 dataTable.cellRenderers.add(
                     '@ui-components/tables/PlusMinusTableColumn',
