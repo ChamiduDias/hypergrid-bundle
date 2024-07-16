@@ -162,6 +162,7 @@
 
                 document.addEventListener('message', (event) => {
                     messageData = JSON.parse(event.data);
+                    alert("Data Triggered");
                     dataTable.setData({ data: messageData, schema: schemaValue });
                 });
 
