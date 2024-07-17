@@ -38,31 +38,31 @@
             const updateTableRows = (dataValue, dataTable) => {
                 // Keep last repaint time
                 let timeStamp = performance.now();
-                alert('updateTableRows~Outer Triggered');
+                // alert('updateTableRows~Outer Triggered');
                 if (dataValue && dataTable) {
-                    alert('updateTableRows~Inner If Triggered');
+                    // alert('updateTableRows~Inner If Triggered');
                     let currentRow;
 
                     // Loop paint loop on all visible rows
                     Object.keys(dataTable.renderer.visibleRowsByDataRowIndex).forEach(function (
                         key,
                     ) {
-                        alert(`updateTableRows~Inner for each Triggered ${key}`);
+                        // alert(`updateTableRows~Inner for each Triggered ${key}`);
                         let value = dataTable.renderer.visibleRowsByDataRowIndex[key];
                         currentRow = dataTable.getRow(key);
 
                         if (currentRow) {
-                            alert('updateTableRows~Inner Current Row If Triggered');
+                            // alert('updateTableRows~Inner Current Row If Triggered');
                             if (currentRow.lastUpdatedTime) {
-                                alert('updateTableRows~Inner Current Row lut Triggered');
+                                // alert('updateTableRows~Inner Current Row lut Triggered');
                                 // Check with last repaint time and last row update time from defined business entity
                                 if (rowUpdatedTimestamp < currentRow.lastUpdatedTime) {
-                                    alert('updateTableRows~Inner paint Triggered');
+                                    // alert('updateTableRows~Inner paint Triggered');
                                     // Paint selected row when last update time is greater than row update time
                                     _paintRow(value.index, dataTable);
                                 }
                             } else {
-                                alert('updateTableRows~Inner Current Row no lut Triggered');
+                                // alert('updateTableRows~Inner Current Row no lut Triggered');
                                 // If business entity not return lut(Last Updated Time) repaint table according to timer.
                                 _paintRow(value.index, dataTable);
                             }
