@@ -7,7 +7,6 @@
 
     <body>
         <script src="./hypergrid-bundle.js"></script>
-<div id="item-count" style="color: white; text-align: center; margin: 20px 0;"></div>
         <div id="dd2" class="hypergrid-canvas"></div>
 
         <style>
@@ -157,19 +156,12 @@
 
                 let dataTable;
                 let container = document.getElementById('dd2');
-                let itemCountElement = document.getElementById('item-count');
                 let { schemaValue } = nativeData;
                 let messageData;
 
-                function updateItemCount(count) {
-        itemCountElement.innerText = `Number of items: ${count}`;
-      }
-
                 document.addEventListener('message', (event) => {
                     messageData = JSON.parse(event.data);
-                    // alert("Data Triggered");
                     dataTable.setData({ data: messageData, schema: schemaValue });
-                    updateItemCount(messageData.length);
                 });
 
                 dataTable = new Hypergrid.Hypergrid(container);
