@@ -53,10 +53,10 @@
 
                         if (currentRow) {
                             alert('updateTableRows~Inner Current Row If Triggered');
-                            if (currentRow.lut) {
+                            if (currentRow.lastUpdatedTime) {
                                 alert('updateTableRows~Inner Current Row lut Triggered');
                                 // Check with last repaint time and last row update time from defined business entity
-                                if (rowUpdatedTimestamp < currentRow.lut) {
+                                if (rowUpdatedTimestamp < currentRow.lastUpdatedTime) {
                                     alert('updateTableRows~Inner paint Triggered');
                                     // Paint selected row when last update time is greater than row update time
                                     _paintRow(value.index, dataTable);
