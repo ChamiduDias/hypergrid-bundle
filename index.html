@@ -167,7 +167,7 @@
 
                 document.addEventListener('message', (event) => {
                     messageData = JSON.parse(event.data);
-                    alert("Data Triggered");
+                    // alert("Data Triggered");
                     dataTable.setData({ data: messageData, schema: schemaValue });
                     updateItemCount(messageData.length);
                 });
