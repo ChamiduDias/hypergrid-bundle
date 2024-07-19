@@ -164,9 +164,13 @@
                 let container = document.getElementById('dd2');
                 let { schemaValue } = nativeData;
                 let messageData;
+                let messageDataMap = new Map();
 
                 document.addEventListener('message', (event) => {
                     messageData = JSON.parse(event.data);
+                    messageData.forEach((item) => {
+                        messageDataMap.set(item.key, item);
+                    });
                     dataTable.setData({ data: messageData, schema: schemaValue });
                 });
 
@@ -214,7 +218,7 @@
 
                 if (dataTable) {
                     let repaintTimer = setInterval(function () {
-                        updateTableRows(messageData, dataTable);
+                        updateTableRows(messageDataMap, dataTable);
                     }, 300);
                 }
 
