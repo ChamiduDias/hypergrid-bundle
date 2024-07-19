@@ -165,13 +165,20 @@
                 let { schemaValue } = nativeData;
                 let messageData;
                 let messageDataMap = new Map();
+                let allDataArray = [];
 
                 document.addEventListener('message', (event) => {
                     messageData = JSON.parse(event.data);
                     messageData.forEach((item) => {
                         messageDataMap.set(item.key, item);
+                        let index = allDataArray.findIndex((data) => data.key === item.key);
+                        if (index !== -1) {
+                            allDataArray[index] = item;
+                        } else {
+                            allDataArray.push(item);
+                        }
                     });
-                    dataTable.setData({ data: messageData, schema: schemaValue });
+                    dataTable.setData({ data: allDataArray, schema: schemaValue });
                 });
 
                 dataTable = new Hypergrid.Hypergrid(container);
@@ -218,7 +225,7 @@
 
                 if (dataTable) {
                     let repaintTimer = setInterval(function () {
-                        updateTableRows(messageData, dataTable);
+                        updateTableRows(allDataArray, dataTable);
                     }, 300);
                 }
 
