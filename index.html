@@ -172,6 +172,7 @@
                     messageData.forEach((item) => {
                         messageDataMap.set(item.key, item);
                         let index = allDataArray.findIndex((data) => data.key === item.key);
+                        alert("🚀 ~ messageData.forEach ~ index:", index)
                         if (index !== -1) {
                             allDataArray[index] = item;
                         } else {
