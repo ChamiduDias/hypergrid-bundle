@@ -171,13 +171,11 @@
                     messageData = JSON.parse(event.data);
                     messageData.forEach((item) => {
                         messageDataMap.set(item.key, item);
-                        alert('🚀 ~ messageData.forEach ~ item:', item);
                         let index = allDataArray.findIndex((data) => {
                             return data.key === item.key;
-                            // alert('🚀 ~ messageData.forEach ~ data.key:', data.key);
                         });
-                        alert('🚀 ~ messageData.forEach ~ index:', index);
                         if (index !== -1) {
+                            alert('🚀 ~ messageData.forEach ~ index:', index);
                             allDataArray[index] = item;
                         } else {
                             allDataArray.push(item);
