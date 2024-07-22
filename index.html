@@ -170,18 +170,21 @@
                 document.addEventListener('message', (event) => {
                     messageData = JSON.parse(event.data);
                     messageData.forEach((item) => {
-                        messageDataMap.set(item.key, item);
-                        // let index = allDataArray.findIndex((data) => data.key === item.key);
-                        let index = allDataArray.findIndex((data) => {
-                            return data.key === item.key;
-                        });
-                        if (index !== -1) {
-                            // alert('🚀 ~ messageData.forEach ~ index:', index);
-                            allDataArray[index] = item;
-                        } else {
+
+                        let hasKey = messageDataMap.has(item.key);
+
+                        if (!hasKey) {
                             allDataArray.push(item);
+                            messageDataMap.set(item.key, allDataArray?.length - 1);
+
+                            return allDataArray;
                         }
+
+                        let index = messageDataMap.get(item.key);
+
+                        allDataArray[index] = item;
                     });
+                    
                     dataTable.setData({ data: allDataArray, schema: schemaValue });
                 });
 
