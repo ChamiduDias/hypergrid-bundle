@@ -17,12 +17,19 @@
                 width: 100%;
                 background-color: rgb(39, 39, 39);
                 height: 100%;
+                overflow: hidden;
             }
 
-            #dd2 > div:nth-child(1),
+/*             #dd2 > div:nth-child(1),
             #div > div:nth-child(1) {
                 height: 100%;
                 width: 100%;
+            } */
+
+            #dd2 {
+                height: 100%;
+                width: 100%;
+                overflow: auto; /* Make the table container scrollable */
             }
 
             .hypergrid-canvas {
