@@ -164,7 +164,7 @@ html, body {
             };
 
             window.onload = (event) => {
-                const nativeData = JSON.parse(window.ReactNativeWebView.injectedObjectJson());
+                const nativeData = JSON.parse(window?.ReactNativeWebView?.injectedObjectJson() ?? []);
 
                 let dataTable;
                 let container = document.getElementById('dd2');
