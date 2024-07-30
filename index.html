@@ -178,7 +178,6 @@
                 document.addEventListener('message', (event) => {
                     messageData = JSON.parse(event.data);
                     messageData.forEach((item) => {
-                        alert('Data item', item);
                         let hasKey = messageDataMap.has(item.key);
 
                         if (!hasKey) {
